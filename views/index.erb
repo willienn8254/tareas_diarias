@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lista de Tareas</title>
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -20,98 +19,94 @@
 
         			<div>
 
-					<h1 class="text-center" >DIARIO DE TAREAS</h1>
-
-					<br>
-					<p class="text-center"> Ingresa tus tareas que tiene que realizar en el dia, y actualiza su estado cuando la hayas completado</p>
-					<br>
-					<br>
+							<h1 class="text-center" >DIARIO DE TAREAS</h1>
+							<br>
+							<p class="text-center"> Ingresa tus tareas que tiene que realizar en el dia, y actualiza su estado cuando la hayas completado</p>
+							<br>
+							<br>
 					</div>
 
-				<div class="row">
 
-					<form class="col-md-6 col-md-offset-3" action="/" method="post">
+					<div class="row">
 
-						<div class="form-group">
-				          <label for="tareaw">Tarea</label>
-				          <input type="text" id="tarea" name="verbo" class="form-control" placeholder="Escriba aqui su tarea"/>
-				        </div>
+						<form class="col-md-6 col-md-offset-3" action="/" method="post">
 
-						
+							<div class="form-group">
+				          		<label for="tareaw">Tarea</label>
+				          		<input type="text" id="tarea" name="verbo" class="form-control" placeholder="Escriba aqui su tarea"/>
+				        	</div>
+
 						
 						<button type="submit"  class="btn btn-success">Registrar Tarea</button>
 
-					</form>
-						</div>
-						<br>
-						<br>
+						</form>
 
-					<div><p class="text-center">SU NUMERO TOTAL DE TAREAS ES DE <%=@tareas.length%><p></div>
+					</div>
+
+					<br>
+					<br>
+
+					<div>
+						<p class="text-center">SU NUMERO TOTAL DE TAREAS ES DE <%=@tareas.length%><p>
+					</div>
 
 					<table class="table table-striped">
 
-					  <thead>
-					    <tr>
-					      <th>id</th>
-					      <th>Tarea</th>
-					      <th>estado</th>
-					      <th>Accion</th>
-					    </tr>
-					  </thead>
-					  <tbody>
+						  <thead>
+							    <tr>
+								      <th>Id</th>
+								      <th>Tarea</th>
+								      <th>Estado</th>
+								      <th>Accion</th>
+							    </tr>
+						  </thead>
+
+						  <tbody>
+					
 						
-
-
-
-
-					  </tbody>
-
-						
-				<% @tareas.each do |tarea| %>
-				 	<tr>
+								<% @tareas.each do |tarea| %>
+				 				<tr>
 				 		
-						<td><%= tarea["id"] %></td>
-						<td><%= tarea["title"] %></td>
-						<td>
-							<%if tarea["done"]==true %>
-							
-							Completada
+									<td><%= tarea["id"] %></td>
+									<td><%= tarea["title"] %></td>
+									<td>
+										<%if tarea["done"]==true %>
+											Completa	
+
+											<%else %>
+
+											Incompleta
+											
+												
+										
+										<%end%>
+									</td>
+
+
+									<td>
+
+										<%if !tarea["done"] %>
+											
+												<a class="btn btn-primary" href="/completar/<%=tarea["id"]%>" role="button">Completar</a>
+										
+										<%end%>
+
+
+										<a class="btn btn-danger" href="/eliminar/<%=tarea["id"]%>" role="button">Eliminar</a>
+
+									</td>
 
 
 
-							<%else %>
+				 				</tr>
 
-							Incompleta
-							<p><a href="/completar/<%=tarea["id"]%>">Ya esta completa<a/></p>
+								<% end %>
+					  		</tbody>
 
-
-							<%end%>
-
-
-						</td>
-						<td><a href="/eliminar/<%=tarea["id"]%>">Eliminar</a></td>
+					</table>				
 
 
-
-				 	</tr>
-
-				<% end %>
-
-					</table>
-
-
-					
-
-				
-
-					
-
-
-	<div>
-
-	
-
-	
+		</div>
 
 	
 </body>
